@@ -7,9 +7,7 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 class Kernel extends HttpKernel
 {
     protected $middleware = [
-        // ✅ WAJIB PALING ATAS — middleware CORS Laravel bawaan
         \Illuminate\Http\Middleware\HandleCors::class,
-
         \App\Http\Middleware\TrustProxies::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
@@ -28,9 +26,6 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            // Tambahkan CORS di sini juga untuk jaga-jaga
-            \Illuminate\Http\Middleware\HandleCors::class,
-
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
@@ -46,8 +41,6 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-
-        // Role middleware kamu
         'role' => \App\Http\Middleware\CheckRole::class,
     ];
 }
